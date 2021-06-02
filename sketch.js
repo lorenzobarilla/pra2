@@ -14,9 +14,9 @@ var latIncr;
 var longIncr;
 
 
-function preload(){
+function preload() {
   // put preload code here
-  myInitLoc =  getCurrentPosition();
+  myInitLoc = getCurrentPosition();
 
   intervalCurrentPosition(showPosition, 1000);
 }
@@ -54,6 +54,9 @@ function showPosition(position) {
   latCurr.innerHTML = currentLat;
   longCurr.innerHTML = currentLon;
 
-  latIncr.innerHTML = currentLat - myInitLoc.latitude;
-  longIncr.innerHTML = currentLon - myInitLoc.longitude;
+  var latVariat = currentLat - myInitLoc.latitude;
+  var longVariat = currentLon - myInitLoc.longitude;
+
+  latIncr.innerHTML = latVariat;
+  longIncr.innerHTML = longVariat;
 }
