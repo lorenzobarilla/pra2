@@ -12,6 +12,9 @@ var latInit;
 var longInit;
 var latIncr;
 var longIncr;
+var testBg;
+
+var fence1;
 
 
 function preload() {
@@ -34,10 +37,33 @@ function setup() {
   latIncr = document.querySelector('#lat-incr');
   longIncr = document.querySelector('#long-incr');
 
+  testBg = document.querySelector('#test-bg');
+
+
+
+
   console.log(myInitLoc);
 
   latInit.innerHTML = myInitLoc.latitude;
   longInit.innerHTML = myInitLoc.longitude;
+
+
+  //FENCES
+  const fenceRadius = 0.000015;
+
+  const fence1LatIncr = 0.000025;
+  const fence1LongIncr = 0.000025;
+  const fence1LatPos = myInitLoc.latitude + fence1LatIncr;
+  const fence1LongPos = myInitLoc.longitude + fence1LongIncr;
+  fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence, outsideTheFence, 'mi')
+
+}
+
+function insideTheFence() {
+  testBg.style.backgroundColor = "red";
+}
+
+function outsideTheFence() {
 
 }
 
