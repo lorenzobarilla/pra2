@@ -23,7 +23,7 @@ function preload() {
   // put preload code here
   myInitLoc = getCurrentPosition();
 
-  intervalCurrentPosition(showPosition, 1000);
+  intervalCurrentPosition(showPosition, 10);
 }
 
 function setup() {
@@ -32,26 +32,20 @@ function setup() {
   // put setup code here
   latCurr = document.querySelector('#lat-curr');
   longCurr = document.querySelector('#long-curr');
-
   latInit = document.querySelector('#lat-init');
   longInit = document.querySelector('#long-init');
-
   latIncr = document.querySelector('#lat-incr');
   longIncr = document.querySelector('#long-incr');
 
   testBg = document.querySelector('#test-bg');
 
 
-
-
-  console.log(myInitLoc);
-
   latInit.innerHTML = myInitLoc.latitude;
   longInit.innerHTML = myInitLoc.longitude;
 
 
   //FENCES
-  const fenceRadius = 0.001; //in km
+  const fenceRadius = 0.002; //in km
 
   fenceOptions = {
   enableHighAccuracy: true,
