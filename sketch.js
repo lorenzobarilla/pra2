@@ -49,13 +49,13 @@ function setup() {
 
 
   //FENCES
-  const fenceRadius = 0.000015;
+  const fenceRadius = 0.015; //in km
 
   const fence1LatIncr = 0.000025;
   const fence1LongIncr = 0.000025;
   const fence1LatPos = myInitLoc.latitude + fence1LatIncr;
   const fence1LongPos = myInitLoc.longitude + fence1LongIncr;
-  fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence, outsideTheFence, 'mi')
+  fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence, outsideTheFence, 'km')
 
 }
 
