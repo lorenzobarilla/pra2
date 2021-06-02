@@ -5,11 +5,13 @@ var currentLat;
 var currentLon;
 var showPosition;
 
-
+//html div
 var latCurr;
 var longCurr;
 var latInit;
 var longInit;
+var latIncr;
+var longIncr;
 
 
 function preload(){
@@ -28,6 +30,9 @@ function setup() {
 
   latInit = document.querySelector('#lat-init');
   longInit = document.querySelector('#long-init');
+
+  latIncr = document.querySelector('#lat-incr');
+  longIncr = document.querySelector('#long-incr');
 
   console.log(myInitLoc);
 
@@ -48,4 +53,7 @@ function showPosition(position) {
 
   latCurr.innerHTML = currentLat;
   longCurr.innerHTML = currentLon;
+
+  latIncr.innerHTML = currentLat - myInitLoc.latitude;
+  longIncr.innerHTML = currentLon - myInitLoc.longitude;
 }
