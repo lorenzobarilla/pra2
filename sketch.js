@@ -28,7 +28,12 @@ function setup() {
 
   latInit = document.querySelector('#lat-init');
   longInit = document.querySelector('#long-init');
+
   console.log(myInitLoc);
+
+  latInit.innerHTML = myInitLoc.latitude;
+  longInit.innerHTML = myInitLoc.longitude;
+
 }
 
 function draw() {
