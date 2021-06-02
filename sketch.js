@@ -23,7 +23,7 @@ function preload() {
   // put preload code here
   myInitLoc = getCurrentPosition();
 
-  intervalCurrentPosition(showPosition, 10);
+  intervalCurrentPosition(showPosition, 50);
 }
 
 function setup() {
@@ -47,9 +47,9 @@ function setup() {
   //FENCES
   const fenceRadius = 0.002; //in km
 
-  fenceOptions = {
-  enableHighAccuracy: true,
-  };
+  // fenceOptions = {
+  // enableHighAccuracy: true,
+  // };
 
   const fence1LatIncr = 0.000025;
   const fence1LongIncr = 0.000025;
@@ -82,7 +82,6 @@ function insideTheFence2() {
 function insideTheFence3() {
   testBg.style.backgroundColor = "yellow";
   console.log("fence 3");
-
 }
 
 function outsideTheFence() {
