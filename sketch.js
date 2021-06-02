@@ -54,8 +54,8 @@ function showPosition(position) {
   latCurr.innerHTML = currentLat;
   longCurr.innerHTML = currentLon;
 
-  var latVariat = currentLat - myInitLoc.latitude;
-  var longVariat = currentLon - myInitLoc.longitude;
+  var latVariat = (currentLat - myInitLoc.latitude).toFixed(6);
+  var longVariat = (currentLon - myInitLoc.longitude).toFixed(6);
 
   latIncr.innerHTML = latVariat;
   longIncr.innerHTML = longVariat;
