@@ -51,26 +51,30 @@ function setup() {
 
 
   //FENCES
-  const fenceRadius = 0.002; //in km
+  const fenceRadius = 0.001; //in km
+
+  fenceOptions = {
+  enableHighAccuracy: true,
+  };
 
   const fence1LatIncr = 0.000025;
   const fence1LongIncr = 0.000025;
   const fence1LatPos = myInitLoc.latitude + fence1LatIncr;
   const fence1LongPos = myInitLoc.longitude + fence1LongIncr;
-  fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence, outsideTheFence, 'km');
+  fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence, outsideTheFence, 'km', fenceOptions);
 
 
-  const fence2LatIncr = -0.000025;
-  const fence2LongIncr = -0.000025;
+  const fence2LatIncr = -0.000020;
+  const fence2LongIncr = -0.000020;
   const fence2LatPos = myInitLoc.latitude + fence2LatIncr;
   const fence2LongPos = myInitLoc.longitude + fence2LongIncr;
-  fence2 = new geoFenceCircle(fence2LatPos, fence2LongPos, fenceRadius, insideTheFence2, outsideTheFence, 'km');
+  fence2 = new geoFenceCircle(fence2LatPos, fence2LongPos, fenceRadius, insideTheFence2, outsideTheFence, 'km', fenceOptions);
 
   const fence3LatIncr = 0.000010;
   const fence3LongIncr = 0.000010;
   const fence3LatPos = myInitLoc.latitude + fence3LatIncr;
   const fence3LongPos = myInitLoc.longitude + fence3LongIncr;
-  fence3 = new geoFenceCircle(fence3LatPos, fence3LongPos, fenceRadius, insideTheFence3, outsideTheFence, 'km');
+  fence3 = new geoFenceCircle(fence3LatPos, fence3LongPos, fenceRadius, insideTheFence3, outsideTheFence, 'km', fenceOptions);
 }
 
 function insideTheFence() {
@@ -83,7 +87,7 @@ function insideTheFence2() {
 }
 function insideTheFence3() {
   testBg.style.backgroundColor = "yellow";
-  console.log("fence 2");
+  console.log("fence 3");
 
 }
 
