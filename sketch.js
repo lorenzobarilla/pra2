@@ -45,11 +45,11 @@ function setup() {
 
 
   //FENCES
-  const fenceRadius = 0.002; //in km
+  const fenceRadius = 0.001; //in km
 
-  // fenceOptions = {
-  // enableHighAccuracy: true,
-  // };
+  fenceOptions = {
+  enableHighAccuracy: true,
+  };
 
   const fence1LatIncr = 0.000025;
   const fence1LongIncr = 0.000025;
@@ -64,8 +64,8 @@ function setup() {
   const fence2LongPos = myInitLoc.longitude + fence2LongIncr;
   fence2 = new geoFenceCircle(fence2LatPos, fence2LongPos, fenceRadius, insideTheFence2, outsideTheFence, 'km', fenceOptions);
 
-  const fence3LatIncr = 0.000010;
-  const fence3LongIncr = 0.000010;
+  const fence3LatIncr = 0.000015;
+  const fence3LongIncr = 0.000015;
   const fence3LatPos = myInitLoc.latitude + fence3LatIncr;
   const fence3LongPos = myInitLoc.longitude + fence3LongIncr;
   fence3 = new geoFenceCircle(fence3LatPos, fence3LongPos, fenceRadius, insideTheFence3, outsideTheFence, 'km', fenceOptions);
