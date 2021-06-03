@@ -45,10 +45,10 @@ function setup() {
 
 
   //FENCES
-  const fenceRadius = 0.001; //in km
+  const fenceRadius = 0.002; //in km
 
   fenceOptions = {
-  enableHighAccuracy: true,
+  enableHighAccuracy: false,
   };
 
   const fence1LatIncr = 0.000025;
