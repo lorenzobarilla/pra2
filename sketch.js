@@ -30,7 +30,7 @@ function preload() {
   // put preload code here
   myInitLoc = getCurrentPosition();
 
-  intervalCurrentPosition(showPosition, 50);
+  intervalCurrentPosition(showPosition, 20);
 }
 
 function setup() {
@@ -48,17 +48,16 @@ function setup() {
   fenceNum = document.querySelector('#fence-num');
 
 
-
   latInit.innerHTML = myInitLoc.latitude;
   longInit.innerHTML = myInitLoc.longitude;
 
 
   //FENCES
   const fenceRadius = 0.002; //in km
-  const fencePosIncr = 0.000025;
+  const fencePosIncr = 0.000025;//in coordinates
 
   fenceOptions = {
-  enableHighAccuracy: false,
+  enableHighAccuracy: true,
   };
 
   const fence0LatIncr = 0;
