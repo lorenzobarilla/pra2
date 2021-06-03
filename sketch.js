@@ -54,7 +54,7 @@ function setup() {
 
   //FENCES
   const fenceRadius = 0.002; //in km
-  const fencePosIncr = 0.000025;//in coordinates
+  const fencePosIncr = 0.000055;//in coordinates
 
   fenceOptions = {
   enableHighAccuracy: true,
