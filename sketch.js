@@ -25,12 +25,30 @@ var fence6;
 var fence7;
 var fence8;
 
+var soundCat;
+var soundCow;
+var soundCricket;
+var soundDog;
+var soundFrog;
+var soundHorse;
+var soundPig;
+var soundSheep;
+
 
 function preload() {
   // put preload code here
   myInitLoc = getCurrentPosition();
 
   intervalCurrentPosition(showPosition, 20);
+
+  soundCat = loadSound("./sounds/cat.waw");
+  soundCow = loadSound("./sounds/cow.waw");
+  soundCricket = loadSound("./sounds/cricket.mp3");
+  soundDog = loadSound("./sounds/dog.waw");
+  soundFrog = loadSound("./sounds/frog.mp3");
+  soundHorse = loadSound("./sounds/horse.mp3");
+  soundPig = loadSound("./sounds/pig.waw");
+  soundSheep = loadSound("./sounds/sheep.waw");
 }
 
 function setup() {
@@ -125,34 +143,74 @@ function insideTheFence0() {
 function insideTheFence1() {
   testBg.style.backgroundColor = "red";
   fenceNum.innerHTML = "1";
+
+  if (soundCat.isPlaying() == false) {
+      soundCat.play();
+    }
+
 }
 function insideTheFence2() {
   testBg.style.backgroundColor = "blue";
   fenceNum.innerHTML = "2";
+
+    if (soundCow.isPlaying() == false) {
+        soundCow.play();
+      }
+
 }
 function insideTheFence3() {
   testBg.style.backgroundColor = "yellow";
   fenceNum.innerHTML = "3";
+
+    if (soundCricket.isPlaying() == false) {
+        soundCricket.play();
+      }
+
 }
 function insideTheFence4() {
   testBg.style.backgroundColor = "green";
   fenceNum.innerHTML = "4";
+
+    if (soundDog.isPlaying() == false) {
+        soundDog.play();
+      }
+
 }
 function insideTheFence5() {
   testBg.style.backgroundColor = "pink";
   fenceNum.innerHTML = "5";
+
+    if (soundFrog.isPlaying() == false) {
+        soundFrog.play();
+      }
+
 }
 function insideTheFence6() {
   testBg.style.backgroundColor = "orange";
   fenceNum.innerHTML = "6";
+
+    if (soundHorse.isPlaying() == false) {
+        soundHorse.play();
+      }
+
 }
 function insideTheFence7() {
   testBg.style.backgroundColor = "purple";
   fenceNum.innerHTML = "7";
+
+    if (soundPig.isPlaying() == false) {
+        soundPig.play();
+      }
+
 }
 function insideTheFence8() {
   testBg.style.backgroundColor = "cyan";
   fenceNum.innerHTML = "8";
+
+    if (soundSheep.isPlaying() == false) {
+        soundSheep.play();
+      }
+
 }
 
 
