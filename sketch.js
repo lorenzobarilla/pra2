@@ -39,16 +39,16 @@ function preload() {
   // put preload code here
   myInitLoc = getCurrentPosition();
 
-  intervalCurrentPosition(showPosition, 20);
+  intervalCurrentPosition(showPosition, 10);
 
-  soundCat = loadSound("./sounds/frog.mp3");
+  soundCat = loadSound("./sounds/horse.mp3");
   soundCow = loadSound("./sounds/frog.mp3");
   soundCricket = loadSound("./sounds/cricket.mp3");
-  soundDog = loadSound("./sounds/frog.mp3");
+  soundDog = loadSound("./sounds/horse.mp3");
   soundFrog = loadSound("./sounds/frog.mp3");
   soundHorse = loadSound("./sounds/horse.mp3");
   soundPig = loadSound("./sounds/frog.mp3");
-  soundSheep = loadSound("./sounds/frog.mp3");
+  soundSheep = loadSound("./sounds/cricket.mp3");
 }
 
 function setup() {
