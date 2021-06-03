@@ -41,14 +41,14 @@ function preload() {
 
   intervalCurrentPosition(showPosition, 10);
 
-  soundCat = loadSound("./sounds/horse.mp3");
-  soundCow = loadSound("./sounds/frog.mp3");
+  soundCat = loadSound("./sounds/cat.mp3");
+  soundCow = loadSound("./sounds/cow.mp3");
   soundCricket = loadSound("./sounds/cricket.mp3");
-  soundDog = loadSound("./sounds/horse.mp3");
+  soundDog = loadSound("./sounds/dog.mp3");
   soundFrog = loadSound("./sounds/frog.mp3");
   soundHorse = loadSound("./sounds/horse.mp3");
-  soundPig = loadSound("./sounds/frog.mp3");
-  soundSheep = loadSound("./sounds/cricket.mp3");
+  soundPig = loadSound("./sounds/pig.mp3");
+  soundSheep = loadSound("./sounds/sheep.mp3");
 }
 
 function setup() {
