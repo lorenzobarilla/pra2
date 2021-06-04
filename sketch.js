@@ -25,6 +25,11 @@ var fence6;
 var fence7;
 var fence8;
 
+var distanceFence1;
+let fence1LatPos;
+let fence1LongPos;
+let dist1Txt;
+
 var soundCat;
 var soundCow;
 var soundCricket;
@@ -65,6 +70,9 @@ function setup() {
   testBg = document.querySelector('#test-bg');
   fenceNum = document.querySelector('#fence-num');
 
+  dist1Txt = document.querySelector('#dist-fence-1');
+
+
 
   latInit.innerHTML = myInitLoc.latitude;
   longInit.innerHTML = myInitLoc.longitude;
@@ -87,8 +95,8 @@ function setup() {
 
   const fence1LatIncr = fencePosIncr;
   const fence1LongIncr = -fencePosIncr;
-  const fence1LatPos = myInitLoc.latitude + fence1LatIncr;
-  const fence1LongPos = myInitLoc.longitude + fence1LongIncr;
+  fence1LatPos = myInitLoc.latitude + fence1LatIncr;
+  fence1LongPos = myInitLoc.longitude + fence1LongIncr;
   fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence1, outsideTheFence, 'km', fenceOptions);
 
 
@@ -237,4 +245,9 @@ function showPosition(position) {
 
   latIncr.innerHTML = latVariat;
   longIncr.innerHTML = longVariat;
+
+  var tempDistanceFence1 = calcGeoDistance(currentLat, currentLon, fence1LatPos, fence1LongPos, 'km');
+  distanceFence1 = tempDistanceFence1 * 1000;
+  dist1Txt.innerHTML = distanceFence1;
+
 }
