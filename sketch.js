@@ -15,6 +15,7 @@ var longIncr;
 var testBg;
 var fenceNum;
 
+const fencePosIncr = 0.00004;//in coordinates
 var fence0;
 var fence1;
 var fence2;
@@ -39,6 +40,9 @@ var soundHorse;
 var soundPig;
 var soundSheep;
 
+var myCircle;
+var myCanvas;
+
 
 function preload() {
   // put preload code here
@@ -57,8 +61,11 @@ function preload() {
 }
 
 function setup() {
-  noCanvas();
-  // createCanvas(windowWidth, windowHeight);
+  // noCanvas();
+  myCanvas = createCanvas(600, 600);
+  background("red");
+  fill("pink");
+  myCircle = circle(myCanvas.width/2, myCanvas.height/2, 15);
   // put setup code here
   latCurr = document.querySelector('#lat-curr');
   longCurr = document.querySelector('#long-curr');
@@ -80,7 +87,6 @@ function setup() {
 
   //FENCES
   const fenceRadius = 0.003; //in km
-  const fencePosIncr = 0.00004;//in coordinates
 
   fenceOptions = {
   enableHighAccuracy: true,
@@ -93,12 +99,22 @@ function setup() {
   fence1 = new geoFenceCircle(fence0LatPos, fence0LongPos, fenceRadius, insideTheFence0, outsideTheFence, 'km', fenceOptions);
 
 
+
   const fence1LatIncr = fencePosIncr;
   const fence1LongIncr = -fencePosIncr;
   fence1LatPos = myInitLoc.latitude + fence1LatIncr;
   fence1LongPos = myInitLoc.longitude + fence1LongIncr;
   fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence1, outsideTheFence, 'km', fenceOptions);
 
+  push();
+  fill("yellow");
+  var fence1circle = circle(0, 0, 25);
+  fence1circle.x = map(fence1LongPos, myInitLoc.longitude - fencePosIncr * 2, myInitLoc.longitude + fencePosIncr * 2, 0, myCanvas.width);
+console.log(fence1circle.x);
+  fence1circle.y = map(fence1LatPos, myInitLoc.latitude - fencePosIncr * 2, myInitLoc.latitude + fencePosIncr * 2, 0, myCanvas.height);
+  console.log(fence1circle.y);
+
+  pop();
 
   const fence2LatIncr = fencePosIncr;
   const fence2LongIncr = 0;
@@ -249,5 +265,8 @@ function showPosition(position) {
   var tempDistanceFence1 = calcGeoDistance(currentLat, currentLon, fence1LatPos, fence1LongPos, 'km');
   distanceFence1 = tempDistanceFence1 * 1000;
   dist1Txt.innerHTML = distanceFence1;
+
+  myCircle.x = map(currentLong, myInitLoc.longitude - fencePosIncr * 2, myInitLoc.longitude + fencePosIncr * 2, 0, myCanvas.width);
+  myCircle.y = map(currentLat, myInitLoc.latitude - fencePosIncr * 2, myInitLoc.latitude + fencePosIncr * 2, 0, myCanvas.height);
 
 }
