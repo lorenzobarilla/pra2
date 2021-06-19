@@ -3,7 +3,9 @@ var myInitLoc;
 
 var currentLat;
 var currentLon;
-var showPosition;
+
+//?????????????????????????????
+// var showPosition;
 
 //html div
 var latCurr;
@@ -48,7 +50,6 @@ function preload() {
   // put preload code here
   myInitLoc = getCurrentPosition();
 
-  intervalCurrentPosition(showPosition, 10);
 
   soundCat = loadSound("./sounds/cat.mp3");
   soundCow = loadSound("./sounds/cow.mp3");
@@ -83,6 +84,10 @@ function setup() {
 
   latInit.innerHTML = myInitLoc.latitude;
   longInit.innerHTML = myInitLoc.longitude;
+
+  //Get device position every 10ms and execute callback showPosition
+  intervalCurrentPosition(showPosition, 10);
+
 
 
   //FENCES
