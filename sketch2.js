@@ -10,6 +10,13 @@ var currentLon;
 
 
 var myCircle;
+var myCircleX;
+var myCircleY;
+
+var myPosX;
+var myPosY;
+
+
 var myCanvas;
 
 const fencePosIncr = 0.00008;//in coordinates
@@ -23,24 +30,39 @@ function preload() {
 }
 
 function setup() {
+
+  myPosX = document.querySelector('#pos-x');
+  myPosY = document.querySelector('#pos-y');
+
   // noCanvas();
   myCanvas = createCanvas(600, 600);
   background("red");
   fill("white");
-  myCircle = circle(myCanvas.width/2, myCanvas.height/2, 15);
+  //
+  // myCircleX = myCanvas.width/2;
+  // myCircleY = myCanvas.height/2;
+
+
 
 
   //Get device position every 10ms and execute callback showPosition
-  intervalCurrentPosition(showPosition, 10);
+  intervalCurrentPosition(showPosition, 300);
+
+  myCircle = new Ball(myCircleX, myCircleY);
+
+
 
 }
 
 
 function draw() {
-  // put drawing code here
+  clear();
+  background("red");
 
-  myCircle.x = map(currentLong, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  myCircle.y = map(currentLat, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+
+
+
+  myCircle.display(myCircleX, myCircleY);
 
 }
 
@@ -55,7 +77,33 @@ function showPosition(position) {
   var longVariat = (currentLon - myInitLoc.longitude).toFixed(6);
 
 
-  // myCircle.x = map(currentLong, myInitLoc.longitude - fencePosIncr * 2, myInitLoc.longitude + fencePosIncr * 2, 0, myCanvas.width);
-  // myCircle.y = map(currentLat, myInitLoc.latitude - fencePosIncr * 2, myInitLoc.latitude + fencePosIncr * 2, 0, myCanvas.height);
+  myCircleX = map(currentLon, myInitLoc.longitude - fencePosIncr * 2, myInitLoc.longitude + fencePosIncr * 2, 0, myCanvas.width);
+  myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr * 2, myInitLoc.latitude + fencePosIncr * 2, 0, myCanvas.height);
 
+  myPosX.innerHTML = myCircleX;
+  myPosY.innerHTML = myCircleY;
+
+
+}
+
+
+function Ball() {
+  // Properties defined by constructor
+
+  // Hardcoded properties
+  this.size = 50;
+
+
+  // Methods
+  // this.move = function() {
+ 	// this.x += this.speed;
+ 	// this.y += this.speed;
+  // }
+
+  this.display = function(_x, _y) {
+    this.x = _x;
+    this.y = _y;
+	fill("white");
+	ellipse(this.x, this.y, this.size);
+  }
 }
