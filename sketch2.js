@@ -33,8 +33,6 @@ function setup() {
   myCanvas = createCanvas(600, 600);
 
 
-
-
   //Get device position every 10ms and execute callback showPosition
   intervalCurrentPosition(showPosition, 100);
 
@@ -47,7 +45,7 @@ function setup() {
 
 function draw() {
   clear();
-  background("red");
+  background("green");
 
 
 
