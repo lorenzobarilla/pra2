@@ -5,7 +5,7 @@ var myInitLoc;
 var currentLat;
 var currentLon;
 
-const fencePosIncr = 0.00008;//in coordinates
+const fencePosIncr = 0.00012;//in coordinates
 
 //player
 var myCircle;
