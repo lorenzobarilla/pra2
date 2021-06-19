@@ -5,9 +5,8 @@ var myInitLoc;
 var currentLat;
 var currentLon;
 
-// const fencePosIncr = 0.00015;//in coordinates
+const fencePosIncr = 0.00015;//in coordinates
 
-const fencePosIncr = 0.0015;//in coordinates
 
 
 //player
@@ -139,7 +138,7 @@ function outsideTheFence() {}
 
 function draw() {
   clear();
-  background("orange");
+  background("black");
 
 
 
