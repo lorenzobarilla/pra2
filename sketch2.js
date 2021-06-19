@@ -1,32 +1,28 @@
 //variables
-var myInitLoc;
 
+//GPS
+var myInitLoc;
 var currentLat;
 var currentLon;
 
-//?????????????????????????????
-// var showPosition;
+const fencePosIncr = 0.00008;//in coordinates
 
-
-
+//player
 var myCircle;
 var myCircleX;
 var myCircleY;
 
+//div html
 var myPosX;
 var myPosY;
 
-
 var myCanvas;
 
-const fencePosIncr = 0.00008;//in coordinates
 
 
 
 function preload() {
-  // put preload code here
   myInitLoc = getCurrentPosition();
-
 }
 
 function setup() {
@@ -34,19 +30,13 @@ function setup() {
   myPosX = document.querySelector('#pos-x');
   myPosY = document.querySelector('#pos-y');
 
-  // noCanvas();
   myCanvas = createCanvas(600, 600);
-  background("red");
-  fill("white");
-  //
-  // myCircleX = myCanvas.width/2;
-  // myCircleY = myCanvas.height/2;
 
 
 
 
   //Get device position every 10ms and execute callback showPosition
-  intervalCurrentPosition(showPosition, 300);
+  intervalCurrentPosition(showPosition, 100);
 
   myCircle = new Ball(myCircleX, myCircleY);
 
@@ -72,13 +62,8 @@ function showPosition(position) {
   currentLat = position.latitude;
   currentLon = position.longitude;
 
-
-  var latVariat = (currentLat - myInitLoc.latitude).toFixed(6);
-  var longVariat = (currentLon - myInitLoc.longitude).toFixed(6);
-
-
-  myCircleX = map(currentLon, myInitLoc.longitude - fencePosIncr * 2, myInitLoc.longitude + fencePosIncr * 2, 0, myCanvas.width);
-  myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr * 2, myInitLoc.latitude + fencePosIncr * 2, 0, myCanvas.height);
+  myCircleX  = map(currentLon, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
+  myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
 
   myPosX.innerHTML = myCircleX;
   myPosY.innerHTML = myCircleY;
