@@ -297,7 +297,8 @@ function draw() {
   if (distanceFence1 < distanceFence3 && distanceFence1 < distanceFence6 && distanceFence1 < distanceFence8){
     if (distanceFence1 < maxDistFence1 * 0.95) {
       var color1Remap = map(distanceFence1, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
-      uiColor = color(255, color1Remap, color1Remap);
+      // uiColor = color(255, color1Remap, color1Remap);
+      uiColor = color(255, 0, 0);
       zoffRemap = map(distanceFence1, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
     } else {
       uiColor = 'white';
@@ -305,7 +306,8 @@ function draw() {
   } else if (distanceFence3 < distanceFence1 && distanceFence3 < distanceFence6 && distanceFence3 < distanceFence8){
     if (distanceFence3 < maxDistFence1 * 0.95) {
       var color3Remap = map(distanceFence3, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
-      uiColor = color(color3Remap, 255, color3Remap);
+      // uiColor = color(color3Remap, 255, color3Remap);
+      uiColor = color(0, 255, 0);
       zoffRemap = map(distanceFence3, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
     } else {
       uiColor = 'white';
@@ -313,7 +315,8 @@ function draw() {
   } else if (distanceFence6 < distanceFence1 && distanceFence6 < distanceFence3 && distanceFence6 < distanceFence8){
     if (distanceFence6 < maxDistFence1 * 0.95) {
       var color6Remap = map(distanceFence6, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
-      uiColor = color(color6Remap, color6Remap, 255);
+      // uiColor = color(color6Remap, color6Remap, 255);
+      uiColor = color(0, 0, 255);
       zoffRemap = map(distanceFence6, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
     } else {
       uiColor = 'white';
@@ -321,7 +324,8 @@ function draw() {
   } else if (distanceFence8 < distanceFence1 && distanceFence8 < distanceFence3 && distanceFence8 < distanceFence6){
     if (distanceFence8 < maxDistFence1 * 0.95) {
       var color8Remap = map(distanceFence8, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
-      uiColor = color(255, 255, color8Remap);
+      // uiColor = color(255, 255, color8Remap);
+      uiColor = color(255, 255, 0);
       zoffRemap = map(distanceFence8, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
     } else {
       uiColor = 'white';
