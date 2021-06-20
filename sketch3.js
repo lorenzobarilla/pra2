@@ -106,8 +106,6 @@ function setup() {
   fence6 = new geoFenceCircle(fence6LatPos, fence6LongPos, fenceRadius, insideTheFence6, outsideTheFence, 'km', fenceOptions);
 
   fence6circle = new Ball('red', 50);
-  fence6circleX = map(fence6LongPos, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  fence6circleY = map(fence6LatPos, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
 
 
 
@@ -118,9 +116,6 @@ function setup() {
   fence8 = new geoFenceCircle(fence8LatPos, fence8LongPos, fenceRadius, insideTheFence8, outsideTheFence, 'km', fenceOptions);
 
   fence8circle = new Ball('pink', 50);
-  fence8circleX = map(fence8LongPos, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  fence8circleY = map(fence8LatPos, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
-
 
 }
 
@@ -161,6 +156,12 @@ function draw() {
 
   fence3circleX = map(fence3LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
   fence3circleY = map(fence3LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+
+  fence6circleX = map(fence6LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
+  fence6circleY = map(fence6LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+
+  fence8circleX = map(fence8LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
+  fence8circleY = map(fence8LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
 
 
   fence1circle.display(fence1circleX, fence1circleY);
