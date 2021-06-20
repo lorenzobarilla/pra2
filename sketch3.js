@@ -32,6 +32,7 @@ var fence1circleX;
 var fence1circleY;
 var distanceFence1;
 let dist1Txt;
+let maxDist1Txt;
 var maxDistFence1;
 
 
@@ -78,6 +79,8 @@ function setup() {
 
   myPosX = document.querySelector('#pos-x');
   myPosY = document.querySelector('#pos-y');
+  maxDist1Txt = document.querySelector('#max-dist-fence-1');
+
     dist1Txt = document.querySelector('#dist-fence-1');
 
   myCanvas = createCanvas(600, 600);
@@ -101,9 +104,10 @@ function setup() {
   fence1LongPos = myInitLoc.longitude + fence1LongIncr;
   fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence1, outsideTheFence, 'km', fenceOptions);
   maxDistFence1 = calcGeoDistance(myInitLoc.latitude, myInitLoc.longitude, fence1LatPos, fence1LongPos, 'km') * 1000;
-  dist1Txt.innerHTML = maxDistFence1;
+  maxDist1Txt.innerHTML = maxDistFence1;
+  var fence1color = color(255, 0, 0);
 
-  fence1circle = new Segnaposto('yellow', 50);
+  fence1circle = new Segnaposto(fence1color, 50);
 
 
 
@@ -112,8 +116,9 @@ function setup() {
   fence3LatPos = myInitLoc.latitude + fence3LatIncr;
   fence3LongPos = myInitLoc.longitude + fence3LongIncr;
   fence3 = new geoFenceCircle(fence3LatPos, fence3LongPos, fenceRadius, insideTheFence3, outsideTheFence, 'km', fenceOptions);
+  var fence3color = color(0, 255, 0);
 
-  fence3circle = new Segnaposto('blue', 50);
+  fence3circle = new Segnaposto(fence3color, 50);
 
 
   const fence6LatIncr = -fencePosIncr;
@@ -121,8 +126,9 @@ function setup() {
   fence6LatPos = myInitLoc.latitude + fence6LatIncr;
   fence6LongPos = myInitLoc.longitude + fence6LongIncr;
   fence6 = new geoFenceCircle(fence6LatPos, fence6LongPos, fenceRadius, insideTheFence6, outsideTheFence, 'km', fenceOptions);
+  var fence6color = color(0, 0, 255);
 
-  fence6circle = new Segnaposto('red', 50);
+  fence6circle = new Segnaposto(fence6color, 50);
 
 
 
@@ -131,8 +137,9 @@ function setup() {
   fence8LatPos = myInitLoc.latitude + fence8LatIncr;
   fence8LongPos = myInitLoc.longitude + fence8LongIncr;
   fence8 = new geoFenceCircle(fence8LatPos, fence8LongPos, fenceRadius, insideTheFence8, outsideTheFence, 'km', fenceOptions);
+  var fence8color = color(255, 255, 0);
 
-  fence8circle = new Segnaposto('pink', 50);
+  fence8circle = new Segnaposto(fence8color, 50);
 
 }
 
@@ -281,9 +288,9 @@ function draw() {
 
 
   //UI
-  if (distanceFence1 < maxDistFence1 * 0.9) {
+  if (distanceFence1 < maxDistFence1 * 0.97) {
     uiColor = 'red';
-    zoffRemap = map(distanceFence1, 0.003, 0.007, maxDistFence1 *0.9, 0);
+    zoffRemap = map(distanceFence1, 0.003, 0.007, maxDistFence1 *0.97, 0);
   }
 
 
@@ -301,7 +308,7 @@ function showPosition(position) {
 
   var tempDistanceFence1 = calcGeoDistance(currentLat, currentLon, fence1LatPos, fence1LongPos, 'km');
   distanceFence1 = tempDistanceFence1 * 1000;
-  // dist1Txt.innerHTML = distanceFence1;
+  dist1Txt.innerHTML = distanceFence1;
 
   myCircleX  = map(currentLon, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
   myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
