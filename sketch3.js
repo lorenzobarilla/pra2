@@ -81,10 +81,20 @@ let noiseMax = 0.4;
 var uiColor = 'white';
 var zoffRemap = 0.003;
 
+//SOUNDS
+var sound1;
+var sound2;
+var sound3;
+var sound4;
 
 
 function preload() {
   myInitLoc = getCurrentPosition();
+
+  sound1 = loadSound("./sounds/cat.mp3");
+  sound2 = loadSound("./sounds/cow.mp3");
+  sound3 = loadSound("./sounds/dog.mp3");
+  sound4 = loadSound("./sounds/frog.mp3");
 
 }
 
@@ -94,12 +104,11 @@ function setup() {
 
 
   //Get device position every 10ms and execute callback showPosition
-  intervalCurrentPosition(showPosition, 50);
-
-  myCircle = new Ball('white', 25);
+  intervalCurrentPosition(showPosition, 100);
 
   //FENCES
-  const fenceRadius = 0.006; //in km
+  const fenceRadius = 0.008; //in km
+
 
   fenceOptions = {
     enableHighAccuracy: true,
@@ -150,25 +159,53 @@ function setup() {
 }
 
 
-function insideTheFence1() {}
-function insideTheFence3() {}
-function insideTheFence6() {}
-function insideTheFence8() {}
-
-
+function insideTheFence1() {
+  background(50, 0, 0);
+  if (sound1.isPlaying() == false) {
+      sound1.play();
+  }
+}
+function insideTheFence3() {
+  background(0, 50, 0);
+  if (sound2.isPlaying() == false) {
+      sound2.play();
+  }
+}
+function insideTheFence6() {
+  background(0, 0, 50);
+  if (sound3.isPlaying() == false) {
+      sound3.play();
+  }
+}
+function insideTheFence8() {
+  background(50, 50, 0);
+  if (sound4.isPlaying() == false) {
+      sound4.play();
+  }
+}
 
 function outsideTheFence() {}
 
 function draw() {
   clear();
-  background("black");
 
+  if (fence1.insideFence){
+    background(30, 0, 0);
+  } else if (fence3.insideFence){
+    background(0, 30, 0);
+  } else if (fence6.insideFence) {
+    background(0, 0, 30);
+  } else if (fence8.insideFence) {
+    background(30, 30, 0);
+  } else {
+  background("black");
+  }
 
 
   push();
   translate(width / 2, height / 2);
   stroke(uiColor);
-  strokeWeight(3);
+  strokeWeight(4);
   noFill();
 
   noiseSeed(1);
@@ -187,12 +224,28 @@ function draw() {
 
 
   noiseSeed(45);
+  var uiColor2 = color(uiColor);
+  uiColor2.setAlpha(210);
+  stroke(uiColor2);
 
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
     let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
     let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
-    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 3);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 5);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+
+  noiseSeed(18);
+
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 2.5);
     let x = r * cos(a);
     let y = r * sin(a);
     vertex(x, y);
@@ -200,6 +253,10 @@ function draw() {
   endShape(CLOSE);
 
   noiseSeed(4);
+  var uiColor3 = color(uiColor);
+  uiColor3.setAlpha(170);
+  stroke(uiColor3);
+
 
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
@@ -213,6 +270,10 @@ function draw() {
   endShape(CLOSE);
 
   noiseSeed(5);
+  var uiColor4 = color(uiColor);
+  uiColor4.setAlpha(120);
+  stroke(uiColor4);
+
 
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
@@ -226,6 +287,9 @@ function draw() {
   endShape(CLOSE);
 
   noiseSeed(651);
+  var uiColor5 = color(uiColor);
+  uiColor5.setAlpha(80);
+  stroke(uiColor5);
 
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
@@ -247,95 +311,58 @@ function draw() {
     push();
     fill(uiColor);
     noStroke();
-    myCircle = circle(myCanvas.width/2, myCanvas.height/2, 15);
+    myCircle = circle(myCanvas.width/2, myCanvas.height/2, 25);
     pop();
 
-  // //sonar interface
-  // push();
-  // fill(0, 0, 0, 0);
-  // stroke('white');
-  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.15);
-  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.30);
-  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.45);
-  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.60);
-  // line(0, 0, myCanvas.width, myCanvas.height);
-  // line(myCanvas.width, 0, 0, myCanvas.height);
-  //
-  // strokeWeight(3);
-  // line(myCanvas.width/2, 0, myCanvas.width/2, myCanvas.height);
-  // line(0, myCanvas.height/2, myCanvas.width, myCanvas.height/2);
-  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.75);
-  // pop();
 
-  // //dots
-  // push();
-  // fill('white');
-  // noStroke();
-  // //vertical
-  // ellipse(myCanvas.width*0.5, myCanvas.height*0.4, 10);
-  // ellipse(myCanvas.width*0.5, myCanvas.height*0.6, 10);
-  // //horizontal
-  // ellipse(myCanvas.width*0.4, myCanvas.height*0.5, 10);
-  // ellipse(myCanvas.width*0.6, myCanvas.height*0.5, 10);
-  // //diagonal 1
-  // ellipse(myCanvas.width*0.433, myCanvas.height*0.433, 10);
-  // ellipse(myCanvas.width*0.566, myCanvas.height*0.566, 10);
-  // //diagonal 2
-  // ellipse(myCanvas.width*0.433, myCanvas.height*0.566, 10);
-  // ellipse(myCanvas.width*0.566, myCanvas.height*0.433, 10);
-  // pop()
-
-
-
-
-
-
+  var coeffMaxTrigger = 0.5;
+  var coeffMinTrigger = 0.15;
 
 
   //UI
   if (distanceFence1 < distanceFence3 && distanceFence1 < distanceFence6 && distanceFence1 < distanceFence8){
-    if (distanceFence1 < maxDistFence1 * 0.98) {
-      var color1Remap = map(distanceFence1, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
+    if (distanceFence1 < maxDistFence1 * coeffMaxTrigger) {
+      var color1Remap = map(distanceFence1, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMaxTrigger, 255, 0);
       // uiColor = color(255, color1Remap, color1Remap);
       uiColor = color(255, 0, 0);
-      zoffRemap = map(distanceFence1, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
-      noiseMax = map(distanceFence1, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
+      zoffRemap = map(distanceFence1, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMaxTrigger, 0.003, 0.007);
+      noiseMax = map(distanceFence1, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMaxTrigger, 0.4, 2);
     } else {
       uiColor = 'white';
       noiseMax = 0.4;
       zoffRemap = 0.003;
     }
   } else if (distanceFence3 < distanceFence1 && distanceFence3 < distanceFence6 && distanceFence3 < distanceFence8){
-    if (distanceFence3 < maxDistFence1 * 0.98) {
-      var color3Remap = map(distanceFence3, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
+    if (distanceFence3 < maxDistFence1 * coeffMaxTrigger) {
+      var color3Remap = map(distanceFence3, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 255, 0);
       // uiColor = color(color3Remap, 255, color3Remap);
       uiColor = color(0, 255, 0);
-      zoffRemap = map(distanceFence3, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
-      noiseMax = map(distanceFence3, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
+      zoffRemap = map(distanceFence3, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 0.003, 0.007);
+      noiseMax = map(distanceFence3, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 0.4, 2);
     } else {
       uiColor = 'white';
       noiseMax = 0.4;
       zoffRemap = 0.003;
     }
   } else if (distanceFence6 < distanceFence1 && distanceFence6 < distanceFence3 && distanceFence6 < distanceFence8){
-    if (distanceFence6 < maxDistFence1 * 0.98) {
-      var color6Remap = map(distanceFence6, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
+    if (distanceFence6 < maxDistFence1 * coeffMaxTrigger) {
+      var color6Remap = map(distanceFence6, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 255, 0);
       // uiColor = color(color6Remap, color6Remap, 255);
       uiColor = color(0, 0, 255);
-      zoffRemap = map(distanceFence6, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
-      noiseMax = map(distanceFence6, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
+      zoffRemap = map(distanceFence6, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 0.003, 0.007);
+      noiseMax = map(distanceFence6, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 0.4, 2);
     } else {
       uiColor = 'white';
       noiseMax = 0.4;
       zoffRemap = 0.003;
     }
   } else if (distanceFence8 < distanceFence1 && distanceFence8 < distanceFence3 && distanceFence8 < distanceFence6){
-    if (distanceFence8 < maxDistFence1 * 0.98) {
-      var color8Remap = map(distanceFence8, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
+    if (distanceFence8 < maxDistFence1 * coeffMaxTrigger) {
+      var color8Remap = map(distanceFence8, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 255, 0);
       // uiColor = color(255, 255, color8Remap);
       uiColor = color(255, 255, 0);
-      zoffRemap = map(distanceFence8, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
-      noiseMax = map(distanceFence8, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
+      zoffRemap = map(distanceFence8, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 0.003, 0.007);
+      noiseMax = map(distanceFence8, maxDistFence1*coeffMaxTrigger, maxDistFence1 *coeffMinTrigger, 0.4, 2);
     } else {
       uiColor = 'white';
       noiseMax = 0.4;
@@ -352,28 +379,28 @@ function draw() {
     fence1circleAlpha = map(distanceFence1, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
   }
   else {
-    fence1circleAlpha = 80;
+    fence1circleAlpha = 0;
   }
 
   if (distanceFence3 < maxDistFence1 * 0.6) {
     fence3circleAlpha = map(distanceFence3, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
   }
   else {
-    fence3circleAlpha = 80;
+    fence3circleAlpha = 0;
   }
 
   if (distanceFence6 < maxDistFence1 * 0.6) {
     fence6circleAlpha = map(distanceFence6, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
   }
   else {
-    fence6circleAlpha = 80;
+    fence6circleAlpha = 0;
   }
 
   if (distanceFence8 < maxDistFence1 * 0.6) {
     fence8circleAlpha = map(distanceFence8, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
   }
   else {
-    fence8circleAlpha = 80;
+    fence8circleAlpha = 0;
   }
   //end trigger ALPHA
 
@@ -412,27 +439,9 @@ function showPosition(position) {
   distanceFence6 = calcGeoDistance(currentLat, currentLon, fence6LatPos, fence6LongPos, 'km') * 1000;
   distanceFence8 = calcGeoDistance(currentLat, currentLon, fence8LatPos, fence8LongPos, 'km') * 1000;
 
-  myCircleX  = map(currentLon, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+  // myCircleX  = map(currentLon, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
+  // myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
 
-
-
-}
-
-
-function Ball(_fill, _size) {
-  // Properties defined by constructor
-  this.fill = _fill;
-  this.size = _size;
-
-
-  this.display = function(_x, _y) {
-    this.x = _x;
-    this.y = _y;
-	  fill(this.fill);
-    noStroke();
-	  ellipse(this.x, this.y, this.size);
-  }
 }
 
 function Segnaposto(_fill, _size) {
