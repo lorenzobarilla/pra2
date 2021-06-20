@@ -5,7 +5,8 @@ var myInitLoc;
 var currentLat;
 var currentLon;
 
-const fencePosIncr = 0.00015;//in coordinates
+const fencePosIncr = 0.00020;//in coordinates
+const fencePosIncr2 = 0.00030;//in coordinates
 
 
 
@@ -151,17 +152,17 @@ function draw() {
 
   myCircle.display(myCanvas.width/2, myCanvas.height/2);
 
-  fence1circleX = map(fence1LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  fence1circleY = map(fence1LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+  fence1circleX = map(fence1LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence1circleY = map(fence1LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
 
-  fence3circleX = map(fence3LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  fence3circleY = map(fence3LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+  fence3circleX = map(fence3LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence3circleY = map(fence3LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
 
-  fence6circleX = map(fence6LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  fence6circleY = map(fence6LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+  fence6circleX = map(fence6LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence6circleY = map(fence6LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
 
-  fence8circleX = map(fence8LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
-  fence8circleY = map(fence8LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
+  fence8circleX = map(fence8LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence8circleY = map(fence8LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
 
 
   fence1circle.display(fence1circleX, fence1circleY);
