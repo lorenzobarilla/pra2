@@ -304,25 +304,25 @@ function draw() {
     }
   } else if (distanceFence3 < distanceFence1 && distanceFence3 < distanceFence6 && distanceFence3 < distanceFence8){
     if (distanceFence3 < maxDistFence1 * 0.9) {
-      var color3Remap = map(distanceFence3, maxDistFence3*0.9, maxDistFence3 *0.2, 255, 0);
+      var color3Remap = map(distanceFence3, maxDistFence1*0.9, maxDistFence1 *0.2, 255, 0);
       uiColor = color(color3Remap, 255, color3Remap);
-      zoffRemap = map(distanceFence3, maxDistFence3*0.9, maxDistFence3 *0.2, 0.003, 0.007);
+      zoffRemap = map(distanceFence3, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
     } else {
       uiColor = 'white';
     }
   } else if (distanceFence6 < distanceFence1 && distanceFence6 < distanceFence3 && distanceFence6 < distanceFence8){
     if (distanceFence6 < maxDistFence1 * 0.9) {
-      var color6Remap = map(distanceFence6, maxDistFence6*0.9, maxDistFence6 *0.2, 255, 0);
+      var color6Remap = map(distanceFence6, maxDistFence1*0.9, maxDistFence1 *0.2, 255, 0);
       uiColor = color(color6Remap, color6Remap, 255);
-      zoffRemap = map(distanceFence6, maxDistFence6*0.9, maxDistFence6 *0.2, 0.003, 0.007);
+      zoffRemap = map(distanceFence6, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
     } else {
       uiColor = 'white';
     }
   } else if (distanceFence8 < distanceFence1 && distanceFence8 < distanceFence3 && distanceFence8 < distanceFence6){
     if (distanceFence8 < maxDistFence1 * 0.9) {
-      var color8Remap = map(distanceFence8, maxDistFence8*0.9, maxDistFence8 *0.2, 255, 0);
+      var color8Remap = map(distanceFence8, maxDistFence1*0.9, maxDistFence1 *0.2, 255, 0);
       uiColor = color(255, 255, color8Remap);
-      zoffRemap = map(distanceFence8, maxDistFence8*0.9, maxDistFence8 *0.2, 0.003, 0.007);
+      zoffRemap = map(distanceFence8, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
     } else {
       uiColor = 'white';
     }
