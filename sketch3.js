@@ -34,6 +34,7 @@ var distanceFence1;
 let dist1Txt;
 let maxDist1Txt;
 var maxDistFence1;
+var fence1circleAlpha = 0;
 
 
 
@@ -44,6 +45,8 @@ var fence3circle;
 var fence3circleX;
 var fence3circleY;
 var distanceFence3;
+var fence3circleAlpha = 0;
+
 
 
 var fence6;
@@ -53,6 +56,8 @@ var fence6circle;
 var fence6circleX;
 var fence6circleY;
 var distanceFence6;
+var fence6circleAlpha = 0;
+
 
 
 var fence8;
@@ -62,6 +67,8 @@ var fence8circle;
 var fence8circleX;
 var fence8circleY;
 var distanceFence8;
+var fence8circleAlpha = 0;
+
 
 
 
@@ -83,13 +90,7 @@ function preload() {
 
 function setup() {
 
-  myPosX = document.querySelector('#pos-x');
-  myPosY = document.querySelector('#pos-y');
-  maxDist1Txt = document.querySelector('#max-dist-fence-1');
-
-    dist1Txt = document.querySelector('#dist-fence-1');
-
-  myCanvas = createCanvas(600, 600);
+  myCanvas = createCanvas(windowWidth, windowHeight);
 
 
   //Get device position every 10ms and execute callback showPosition
@@ -110,7 +111,6 @@ function setup() {
   fence1LongPos = myInitLoc.longitude + fence1LongIncr;
   fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence1, outsideTheFence, 'km', fenceOptions);
   maxDistFence1 = calcGeoDistance(myInitLoc.latitude, myInitLoc.longitude, fence1LatPos, fence1LongPos, 'km') * 1000;
-  maxDist1Txt.innerHTML = maxDistFence1;
   var fence1color = color(255, 0, 0);
 
   fence1circle = new Segnaposto(fence1color, 50);
@@ -168,9 +168,10 @@ function draw() {
   push();
   translate(width / 2, height / 2);
   stroke(uiColor);
-  strokeWeight(2);
+  strokeWeight(3);
   noFill();
 
+  noiseSeed(1);
 
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
@@ -183,27 +184,35 @@ function draw() {
   }
   endShape(CLOSE);
 
+
+
+  noiseSeed(45);
+
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
     let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
     let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
-    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 5);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 3);
     let x = r * cos(a);
     let y = r * sin(a);
     vertex(x, y);
   }
   endShape(CLOSE);
 
+  noiseSeed(4);
+
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
     let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
     let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
-    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 2);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 1.5);
     let x = r * cos(a);
     let y = r * sin(a);
     vertex(x, y);
   }
   endShape(CLOSE);
+
+  noiseSeed(5);
 
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
@@ -215,6 +224,8 @@ function draw() {
     vertex(x, y);
   }
   endShape(CLOSE);
+
+  noiseSeed(651);
 
   beginShape();
   for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
@@ -232,6 +243,12 @@ function draw() {
   zoff += zoffRemap;
   //aumenta fino 0.006
   pop();
+
+    push();
+    fill(uiColor);
+    noStroke();
+    myCircle = circle(myCanvas.width/2, myCanvas.height/2, 15);
+    pop();
 
   // //sonar interface
   // push();
@@ -272,70 +289,111 @@ function draw() {
 
 
 
-  myCircle.display(myCanvas.width/2, myCanvas.height/2);
 
-  fence1circleX = map(fence1LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
-  fence1circleY = map(fence1LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
-
-  fence3circleX = map(fence3LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
-  fence3circleY = map(fence3LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
-
-  fence6circleX = map(fence6LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
-  fence6circleY = map(fence6LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
-
-  fence8circleX = map(fence8LongPos + myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
-  fence8circleY = map(fence8LatPos + myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
-
-
-  fence1circle.display(fence1circleX, fence1circleY);
-  fence3circle.display(fence3circleX, fence3circleY);
-  fence6circle.display(fence6circleX, fence6circleY);
-  fence8circle.display(fence8circleX, fence8circleY);
 
 
   //UI
   if (distanceFence1 < distanceFence3 && distanceFence1 < distanceFence6 && distanceFence1 < distanceFence8){
-    if (distanceFence1 < maxDistFence1 * 0.95) {
+    if (distanceFence1 < maxDistFence1 * 0.98) {
       var color1Remap = map(distanceFence1, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
       // uiColor = color(255, color1Remap, color1Remap);
       uiColor = color(255, 0, 0);
-      zoffRemap = map(distanceFence1, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
+      zoffRemap = map(distanceFence1, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
+      noiseMax = map(distanceFence1, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
     } else {
       uiColor = 'white';
+      noiseMax = 0.4;
+      zoffRemap = 0.003;
     }
   } else if (distanceFence3 < distanceFence1 && distanceFence3 < distanceFence6 && distanceFence3 < distanceFence8){
-    if (distanceFence3 < maxDistFence1 * 0.95) {
+    if (distanceFence3 < maxDistFence1 * 0.98) {
       var color3Remap = map(distanceFence3, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
       // uiColor = color(color3Remap, 255, color3Remap);
       uiColor = color(0, 255, 0);
-      zoffRemap = map(distanceFence3, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
+      zoffRemap = map(distanceFence3, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
+      noiseMax = map(distanceFence3, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
     } else {
       uiColor = 'white';
+      noiseMax = 0.4;
+      zoffRemap = 0.003;
     }
   } else if (distanceFence6 < distanceFence1 && distanceFence6 < distanceFence3 && distanceFence6 < distanceFence8){
-    if (distanceFence6 < maxDistFence1 * 0.95) {
+    if (distanceFence6 < maxDistFence1 * 0.98) {
       var color6Remap = map(distanceFence6, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
       // uiColor = color(color6Remap, color6Remap, 255);
       uiColor = color(0, 0, 255);
-      zoffRemap = map(distanceFence6, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
+      zoffRemap = map(distanceFence6, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
+      noiseMax = map(distanceFence6, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
     } else {
       uiColor = 'white';
+      noiseMax = 0.4;
+      zoffRemap = 0.003;
     }
   } else if (distanceFence8 < distanceFence1 && distanceFence8 < distanceFence3 && distanceFence8 < distanceFence6){
-    if (distanceFence8 < maxDistFence1 * 0.95) {
+    if (distanceFence8 < maxDistFence1 * 0.98) {
       var color8Remap = map(distanceFence8, maxDistFence1*0.95, maxDistFence1 *0.9, 255, 0);
       // uiColor = color(255, 255, color8Remap);
       uiColor = color(255, 255, 0);
-      zoffRemap = map(distanceFence8, maxDistFence1*0.9, maxDistFence1 *0.2, 0.003, 0.007);
+      zoffRemap = map(distanceFence8, maxDistFence1*0.98, maxDistFence1 *0.92, 0.003, 0.007);
+      noiseMax = map(distanceFence8, maxDistFence1*0.98, maxDistFence1 *0.92, 0.4, 2);
     } else {
       uiColor = 'white';
+      noiseMax = 0.4;
+      zoffRemap = 0.003;
     }
   }else {
     uiColor = 'white';
+    noiseMax = 0.4;
+    zoffRemap = 0.003;
   }
 
+  //trigger ALPHA
+  if (distanceFence1 < maxDistFence1 * 0.6) {
+    fence1circleAlpha = map(distanceFence1, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
+  }
+  else {
+    fence1circleAlpha = 80;
+  }
+
+  if (distanceFence3 < maxDistFence1 * 0.6) {
+    fence3circleAlpha = map(distanceFence3, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
+  }
+  else {
+    fence3circleAlpha = 80;
+  }
+
+  if (distanceFence6 < maxDistFence1 * 0.6) {
+    fence6circleAlpha = map(distanceFence6, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
+  }
+  else {
+    fence6circleAlpha = 80;
+  }
+
+  if (distanceFence8 < maxDistFence1 * 0.6) {
+    fence8circleAlpha = map(distanceFence8, maxDistFence1*0.6, maxDistFence1 *0.25, 0, 255);
+  }
+  else {
+    fence8circleAlpha = 80;
+  }
+  //end trigger ALPHA
+
+  fence1circleX = map(fence1LongPos - myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence1circleY = map(fence1LatPos - myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
+
+  fence3circleX = map(fence3LongPos - myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence3circleY = map(fence3LatPos - myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
+
+  fence6circleX = map(fence6LongPos - myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence6circleY = map(fence6LatPos - myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
+
+  fence8circleX = map(fence8LongPos - myPosLonIncr, myInitLoc.longitude - fencePosIncr2, myInitLoc.longitude + fencePosIncr2, 0, myCanvas.width);
+  fence8circleY = map(fence8LatPos - myPosLatIncr, myInitLoc.latitude - fencePosIncr2, myInitLoc.latitude + fencePosIncr2, 0, myCanvas.height);
 
 
+  fence1circle.display(fence1circleX, fence1circleY, fence1circleAlpha);
+  fence3circle.display(fence3circleX, fence3circleY, fence3circleAlpha);
+  fence6circle.display(fence6circleX, fence6circleY, fence6circleAlpha);
+  fence8circle.display(fence8circleX, fence8circleY, fence8circleAlpha);
 
 }
 
@@ -349,7 +407,6 @@ function showPosition(position) {
   myPosLonIncr = currentLon - myInitLoc.longitude;
 
   distanceFence1 = calcGeoDistance(currentLat, currentLon, fence1LatPos, fence1LongPos, 'km') * 1000;
-  dist1Txt.innerHTML = distanceFence1;
 
   distanceFence3 = calcGeoDistance(currentLat, currentLon, fence3LatPos, fence3LongPos, 'km') * 1000;
   distanceFence6 = calcGeoDistance(currentLat, currentLon, fence6LatPos, fence6LongPos, 'km') * 1000;
@@ -358,8 +415,6 @@ function showPosition(position) {
   myCircleX  = map(currentLon, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
   myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
 
-  myPosX.innerHTML = myCircleX;
-  myPosY.innerHTML = myCircleY;
 
 
 }
@@ -386,20 +441,24 @@ function Segnaposto(_fill, _size) {
   this.size2 = _size*0.75;
   this.size3 = _size*0.5;
 
-  this.display = function(_x, _y) {
+  this.display = function(_x, _y, _a) {
     this.x = _x;
     this.y = _y;
+    this.alpha = _a;
 
     push();
     translate(-this.size/2, -this.size/2);
     fill(this.fill);
     noStroke();
-    square(this.x, this.y, this.size);
+    var square1 = square(this.x, this.y, this.size);
+    this.fill.setAlpha(this.alpha);
     pop();
 
     push();
     translate(-this.size2/2, -this.size2/2);
-    fill('black');
+    var secondColor = color(0,0,0);
+    secondColor.setAlpha(this.alpha);
+    fill(secondColor);
     noStroke();
     square(this.x, this.y, this.size2);
     pop();
