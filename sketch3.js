@@ -5,8 +5,8 @@ var myInitLoc;
 var currentLat;
 var currentLon;
 
-const fencePosIncr = 0.00020;//in coordinates
-const fencePosIncr2 = 0.00030;//in coordinates
+const fencePosIncr = 0.00025;//in coordinates
+const fencePosIncr2 = fencePosIncr + 0.00007;//in coordinates
 
 
 
