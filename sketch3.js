@@ -30,6 +30,10 @@ let fence1LongPos;
 var fence1circle;
 var fence1circleX;
 var fence1circleY;
+var distanceFence1;
+let dist1Txt;
+var maxDistFence1;
+
 
 
 var fence3;
@@ -60,18 +64,21 @@ let zoff = 0;
 let myRadians = 0.1;
 let noiseMax = 0.4;
 //aumenta fino a 2
-
+var uiColor = 'white';
+var zoffRemap = 0.003;
 
 
 
 function preload() {
   myInitLoc = getCurrentPosition();
+
 }
 
 function setup() {
 
   myPosX = document.querySelector('#pos-x');
   myPosY = document.querySelector('#pos-y');
+    dist1Txt = document.querySelector('#dist-fence-1');
 
   myCanvas = createCanvas(600, 600);
 
@@ -93,6 +100,8 @@ function setup() {
   fence1LatPos = myInitLoc.latitude + fence1LatIncr;
   fence1LongPos = myInitLoc.longitude + fence1LongIncr;
   fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence1, outsideTheFence, 'km', fenceOptions);
+  maxDistFence1 = calcGeoDistance(myInitLoc.latitude, myInitLoc.longitude, fence1LatPos, fence1LongPos, 'km') * 1000;
+  dist1Txt.innerHTML = maxDistFence1;
 
   fence1circle = new Segnaposto('yellow', 50);
 
@@ -145,7 +154,7 @@ function draw() {
 
   push();
   translate(width / 2, height / 2);
-  stroke(255);
+  stroke(uiColor);
   strokeWeight(2);
   noFill();
 
@@ -207,7 +216,7 @@ function draw() {
 
 
   phase += 0.001;
-  zoff += 0.003;
+  zoff += zoffRemap;
   //aumenta fino 0.006
   pop();
 
@@ -271,6 +280,11 @@ function draw() {
   fence8circle.display(fence8circleX, fence8circleY);
 
 
+  //UI
+  if (distanceFence1 < maxDistFence1 * 0.9) {
+    uiColor = 'red';
+    zoffRemap = map(distanceFence1, 0.003, 0.007, maxDistFence1 *0.9, 0);
+  }
 
 
 
@@ -285,7 +299,9 @@ function showPosition(position) {
   myPosLatIncr = currentLat - myInitLoc.latitude;
   myPosLonIncr = currentLon - myInitLoc.longitude;
 
-
+  var tempDistanceFence1 = calcGeoDistance(currentLat, currentLon, fence1LatPos, fence1LongPos, 'km');
+  distanceFence1 = tempDistanceFence1 * 1000;
+  // dist1Txt.innerHTML = distanceFence1;
 
   myCircleX  = map(currentLon, myInitLoc.longitude - fencePosIncr, myInitLoc.longitude + fencePosIncr, 0, myCanvas.width);
   myCircleY = map(currentLat, myInitLoc.latitude - fencePosIncr, myInitLoc.latitude + fencePosIncr, 0, myCanvas.height);
