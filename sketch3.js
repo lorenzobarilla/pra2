@@ -54,6 +54,13 @@ var fence8circleX;
 var fence8circleY;
 
 
+//TERRENO
+let phase = 0;
+let zoff = 0;
+let myRadians = 0.1;
+let noiseMax = 0.4;
+//aumenta fino a 2
+
 
 
 
@@ -87,7 +94,7 @@ function setup() {
   fence1LongPos = myInitLoc.longitude + fence1LongIncr;
   fence1 = new geoFenceCircle(fence1LatPos, fence1LongPos, fenceRadius, insideTheFence1, outsideTheFence, 'km', fenceOptions);
 
-  fence1circle = new Ball('yellow', 50);
+  fence1circle = new Segnaposto('yellow', 50);
 
 
 
@@ -97,7 +104,7 @@ function setup() {
   fence3LongPos = myInitLoc.longitude + fence3LongIncr;
   fence3 = new geoFenceCircle(fence3LatPos, fence3LongPos, fenceRadius, insideTheFence3, outsideTheFence, 'km', fenceOptions);
 
-  fence3circle = new Ball('blue', 50);
+  fence3circle = new Segnaposto('blue', 50);
 
 
   const fence6LatIncr = -fencePosIncr;
@@ -106,7 +113,7 @@ function setup() {
   fence6LongPos = myInitLoc.longitude + fence6LongIncr;
   fence6 = new geoFenceCircle(fence6LatPos, fence6LongPos, fenceRadius, insideTheFence6, outsideTheFence, 'km', fenceOptions);
 
-  fence6circle = new Ball('red', 50);
+  fence6circle = new Segnaposto('red', 50);
 
 
 
@@ -116,7 +123,7 @@ function setup() {
   fence8LongPos = myInitLoc.longitude + fence8LongIncr;
   fence8 = new geoFenceCircle(fence8LatPos, fence8LongPos, fenceRadius, insideTheFence8, outsideTheFence, 'km', fenceOptions);
 
-  fence8circle = new Ball('pink', 50);
+  fence8circle = new Segnaposto('pink', 50);
 
 }
 
@@ -134,17 +141,110 @@ function draw() {
   clear();
   background("black");
 
-  //sonar interface
+
+
   push();
-  fill(0, 0, 0, 0);
-  stroke('white');
-  ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.3);
-  ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.6);
-  line(0, 0, myCanvas.width, myCanvas.height);
-  line(myCanvas.width, 0, 0, myCanvas.height);
-  line(myCanvas.width/2, 0, myCanvas.width/2, myCanvas.height);
-  line(0, myCanvas.height/2, myCanvas.width, myCanvas.height/2);
+  translate(width / 2, height / 2);
+  stroke(255);
+  strokeWeight(2);
+  noFill();
+
+
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 100);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 5);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 2);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 1);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += radians(myRadians)) {
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, 100, height / 0.7);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+
+
+  phase += 0.001;
+  zoff += 0.003;
+  //aumenta fino 0.006
   pop();
+
+  // //sonar interface
+  // push();
+  // fill(0, 0, 0, 0);
+  // stroke('white');
+  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.15);
+  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.30);
+  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.45);
+  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.60);
+  // line(0, 0, myCanvas.width, myCanvas.height);
+  // line(myCanvas.width, 0, 0, myCanvas.height);
+  //
+  // strokeWeight(3);
+  // line(myCanvas.width/2, 0, myCanvas.width/2, myCanvas.height);
+  // line(0, myCanvas.height/2, myCanvas.width, myCanvas.height/2);
+  // ellipse(myCanvas.width/2, myCanvas.height/2, myCanvas.width*0.75);
+  // pop();
+
+  // //dots
+  // push();
+  // fill('white');
+  // noStroke();
+  // //vertical
+  // ellipse(myCanvas.width*0.5, myCanvas.height*0.4, 10);
+  // ellipse(myCanvas.width*0.5, myCanvas.height*0.6, 10);
+  // //horizontal
+  // ellipse(myCanvas.width*0.4, myCanvas.height*0.5, 10);
+  // ellipse(myCanvas.width*0.6, myCanvas.height*0.5, 10);
+  // //diagonal 1
+  // ellipse(myCanvas.width*0.433, myCanvas.height*0.433, 10);
+  // ellipse(myCanvas.width*0.566, myCanvas.height*0.566, 10);
+  // //diagonal 2
+  // ellipse(myCanvas.width*0.433, myCanvas.height*0.566, 10);
+  // ellipse(myCanvas.width*0.566, myCanvas.height*0.433, 10);
+  // pop()
 
 
 
@@ -169,6 +269,7 @@ function draw() {
   fence3circle.display(fence3circleX, fence3circleY);
   fence6circle.display(fence6circleX, fence6circleY);
   fence8circle.display(fence8circleX, fence8circleY);
+
 
 
 
@@ -206,6 +307,40 @@ function Ball(_fill, _size) {
     this.x = _x;
     this.y = _y;
 	  fill(this.fill);
+    noStroke();
 	  ellipse(this.x, this.y, this.size);
+  }
+}
+
+function Segnaposto(_fill, _size) {
+  this.fill = _fill;
+  this.size = _size;
+  this.size2 = _size*0.75;
+  this.size3 = _size*0.5;
+
+  this.display = function(_x, _y) {
+    this.x = _x;
+    this.y = _y;
+
+    push();
+    translate(-this.size/2, -this.size/2);
+    fill(this.fill);
+    noStroke();
+    square(this.x, this.y, this.size);
+    pop();
+
+    push();
+    translate(-this.size2/2, -this.size2/2);
+    fill('black');
+    noStroke();
+    square(this.x, this.y, this.size2);
+    pop();
+
+    push();
+    translate(-this.size3/2, -this.size3/2);
+    fill(this.fill);
+    noStroke();
+    square(this.x, this.y, this.size3);
+    pop();
   }
 }
