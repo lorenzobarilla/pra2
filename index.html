@@ -82,7 +82,10 @@ p{
     <script src="p5.sound.js"></script>
     <script src="p5.geolocation.js"></script>
     <script>
-    document.body.requestFullscreen();
+    var goFS = document.getElementById("myButton");
+    goFS.addEventListener("click", function() {
+        document.body.requestFullscreen();
+    }, false);
     </script>
   </head>
   <body>
@@ -91,7 +94,7 @@ p{
     <br>
     <h3>Indossa le cuffie ed immergiti in una realtà alternativa sonora. Muoviti nello spazio seguendo la perturbazione delle onde dell'interfaccia per scoprire tutti gli effetti sonori del soundscape.</h3>
     <br>
-    <button onclick="location.href='experience.html'" type="button" class="button">PLAY</button>
+    <button id="myButton" onclick="location.href='experience.html'" type="button" class="button">PLAY</button>
 
     <div id="footer">
     <p>Attiva il GPS del tuo dispositivo</p>
