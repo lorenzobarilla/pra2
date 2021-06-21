@@ -3,41 +3,103 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <style> body {padding: 0; margin: 0;} </style>
+    <link rel="stylesheet" href="https://use.typekit.net/lfa0oid.css">
+
+    <style>
+
+    @font-face {
+    font-family: "Domaine";
+    src: url("./test-domaine-text-regular.woff") format("woff");
+}
+    body {
+      padding: 0;
+      margin: 10%;
+      margin-top: 20%;
+      background-color: black;
+      color: white;
+      text-align: center;
+
+      user-select: none; /* supported by Chrome and Opera */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+    }
+
+    .button {
+  font-size: 50px;
+  border-style: solid;
+  font-weight: bold;
+  background-color: black;
+  left: 50%;
+  cursor: pointer;
+  color: #FFF;
+  border-color: #FFF;
+  font-family: komu-b, sans-serif;
+font-style: normal;
+font-weight: 400;
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 5px;
+padding-bottom: 5px;
+
+
+
+}
+
+h1{
+  font-size: 150px;
+  font-family: komu-b, sans-serif;
+font-style: normal;
+font-weight: 400;
+}
+h2{
+  font-size: 50px;
+  font-family: "Domaine", sans-serif;
+}
+h3{
+  font-size: 25px;
+  font-family: sans-serif;
+}
+p{
+  font-size: 15px;
+  font-family: sans-serif;
+}
+.footer {
+  font-size: 10px;
+}
+#footer {
+  transform: translate(0, 100%);
+  bottom: 15%;
+}
+
+
+    </style>
+
+
+    <title>Home</title>
     <script src="p5.min.js"></script>
-    <script src="p5.sound.min.js"></script>
+    <script src="p5.sound.js"></script>
     <script src="p5.geolocation.js"></script>
 
   </head>
   <body>
-    <p style="display: none">LAT INIT</p>
-    <p id="lat-init" style="display: none"></p>
-    <p style="display: none">LONG INIT</p>
-    <p id="long-init" style="display: none"></p>
+    <h1>Accessibilità è Coinvolgimento</h1>
+    <h2>Mobile Experience</h2>
     <br>
-    <p style="display: none">LAT CURR</p>
-    <p id="lat-curr" style="display: none"></p>
-    <p style="display: none">LONG CURR</p>
-    <p id="long-curr" style="display: none"></p>
+    <h3>Indossa le cuffie ed immergiti in una realtà alternativa sonora. Muoviti nello spazio seguendo la perturbazione delle onde dell'interfaccia per scoprire tutti gli effetti sonori del soundscape.</h3>
     <br>
-    <p>LATITUDE INCREMENT</p>
-    <h2 id="lat-incr">loading</h2>
-    <p>LONGITUDE INCREMENT</p>
-    <h2 id="long-incr">loading</h2>
-    <br>
-    <p>DISTANCE FENCE 1</p>
-    <h2 id="dist-fence-1">loading</h2>
+    <button onclick="location.href='experience.html'" type="button" class="button">PLAY</button>
 
-
-
-    <div id="test-bg" style="background-color: grey; width:300px; height: 300px;">
-      <h1 id="fence-num" style="color: white; font-size:72px;">1</h1>
+    <div id="footer">
+    <p>Attiva il GPS del tuo dispositivo</p>
+    <p>Per fruire l'esperienza al meglio accertati di avere almeno 50m a disposizione</p>
+    <p class="footer">Politecnico di Milano - Lab. di Progettazione di Artefatti e Sistemi Complessi - A.A. 2020/21</p>
+    <p class="footer">Progetto di: L. Barilla, G. Curati, I. Garavaglia, F. Tortelli</p>
     </div>
-
-    <img src="qr.png">
 
   </body>
 
-  <script src="sketch.js"></script>
+  <script src="sketch0.js"></script>
 
 </html>
