@@ -87,6 +87,9 @@ var sound2;
 var sound3;
 var sound4;
 
+//UI TEXT
+let latTxt = 'loading';
+let lonTxt = 'loading';
 
 function preload() {
   myInitLoc = getCurrentPosition();
@@ -189,6 +192,8 @@ function outsideTheFence() {}
 function draw() {
   clear();
 
+
+
   if (fence1.insideFence){
     background(30, 0, 0);
   } else if (fence3.insideFence){
@@ -200,6 +205,27 @@ function draw() {
   } else {
   background("black");
   }
+  //TEXT
+  push();
+  var sizeFont = 25;
+  textSize(sizeFont);
+  textAlign(RIGHT);
+  // textFont(arial);
+
+  fill('white');
+
+  text('PrA_2', windowWidth*0.975, windowHeight*0.025);
+  // text('Soundscape Experiecne', windowWidth*0.975, windowHeight*0.025 + sizeFont * 1.25);
+
+  text('LATITUDE', windowWidth*0.975, windowHeight*0.975 -  sizeFont * 4.25);
+  text(latTxt, windowWidth*0.975, windowHeight*0.975 - sizeFont * 3);
+  text('LONGITUDE', windowWidth*0.975, windowHeight*0.975 - sizeFont * 1.25);
+  text(lonTxt, windowWidth*0.975, windowHeight*0.975);
+
+  textAlign(LEFT);
+  text('EXPERIENCE_1', windowWidth*0.025, windowHeight*0.975);
+
+  pop();
 
 
   push();
@@ -429,6 +455,9 @@ function draw() {
 function showPosition(position) {
   currentLat = position.latitude;
   currentLon = position.longitude;
+
+  latTxt = currentLat.toFixed(6);
+  lonTxt = currentLon.toFixed(6);
 
   myPosLatIncr = currentLat - myInitLoc.latitude;
   myPosLonIncr = currentLon - myInitLoc.longitude;
