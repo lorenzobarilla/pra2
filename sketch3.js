@@ -214,7 +214,7 @@ function draw() {
 
   fill('white');
 
-  text('PrA_2', windowWidth*0.975, windowHeight*0.025);
+  text('AR_SOUND LAYER', windowWidth*0.975, windowHeight*0.025);
   // text('Soundscape Experiecne', windowWidth*0.975, windowHeight*0.025 + sizeFont * 1.25);
 
   text('LATITUDE', windowWidth*0.975, windowHeight*0.975 -  sizeFont * 4.25);

@@ -7,17 +7,9 @@
 
     <style>
 
-    @font-face {
-    font-family: "Domaine";
-    src: url("./test-domaine-text-regular.woff") format("woff");
-}
     body {
-      padding: 0;
-      margin: 10%;
-      margin-top: 20%;
       background-color: black;
-      color: white;
-      text-align: center;
+
 
       user-select: none; /* supported by Chrome and Opera */
       -webkit-user-select: none; /* Safari */
@@ -26,52 +18,47 @@
       -ms-user-select: none; /* Internet Explorer/Edge */
     }
 
-    .button {
-  font-size: 50px;
-  border-style: solid;
-  font-weight: bold;
-  background-color: black;
-  left: 50%;
-  cursor: pointer;
-  color: #FFF;
-  border-color: #FFF;
-  font-family: komu-b, sans-serif;
-font-style: normal;
-font-weight: 400;
-padding-left: 15px;
-padding-right: 15px;
-padding-top: 5px;
-padding-bottom: 5px;
+    #my-button {
+      font-size: 30px;
+      font-weight: bold;
+      font-family: helvetica, sans-serif;
+      font-style: normal;
+      padding-left: 15px;
+      text-align: center;
+
+      color: #FFF;
+      border-color: #FFF;
+      border-style: solid;
+      background-color: black;
+      border-radius: 0px;
+
+      position: absolute;
+      left: 50%;
+      bottom: 8%;
+      transform: translate(-50%, -50%);
+
+      padding-right: 15px;
+      padding-left: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      cursor: pointer;
+}
+      #my-button:hover{
+        background-color: white;
+        color: black;;
+      }
+
+      .svg-class {
+        position: absolute;
+        top: 20%;
+        max-height: 60%;
+        max-width: 90%;
+        transform: translate(-50%, 0);
+        left: 50%;
+
+      }
 
 
-
-}
-
-h1{
-  font-size: 150px;
-  font-family: komu-b, sans-serif;
-font-style: normal;
-font-weight: 400;
-}
-h2{
-  font-size: 50px;
-  font-family: "Domaine", sans-serif;
-}
-h3{
-  font-size: 25px;
-  font-family: sans-serif;
-}
-p{
-  font-size: 15px;
-  font-family: sans-serif;
-}
-.footer {
-  font-size: 10px;
-}
-#footer {
-  transform: translate(0, 100%);
-  bottom: 15%;
-}
 
 
     </style>
@@ -81,27 +68,13 @@ p{
     <script src="p5.min.js"></script>
     <script src="p5.sound.js"></script>
     <script src="p5.geolocation.js"></script>
-    <script>
-    var goFS = document.getElementById("myButton");
-    goFS.addEventListener("click", function() {
-        document.body.requestFullscreen();
-    }, false);
-    </script>
+
   </head>
   <body>
-    <h1>Accessibilità è Coinvolgimento</h1>
-    <h2>Mobile Experience</h2>
-    <br>
-    <h3>Indossa le cuffie ed immergiti in una realtà alternativa sonora. Muoviti nello spazio seguendo la perturbazione delle onde dell'interfaccia per scoprire tutti gli effetti sonori del soundscape.</h3>
-    <br>
-    <button id="myButton" onclick="location.href='experience.html'" type="button" class="button">PLAY</button>
 
-    <div id="footer">
-    <p>Attiva il GPS del tuo dispositivo</p>
-    <p>Per fruire l'esperienza al meglio accertati di avere almeno 50m a disposizione</p>
-    <p class="footer">Politecnico di Milano - Lab. di Progettazione di Artefatti e Sistemi Complessi - A.A. 2020/21</p>
-    <p class="footer">Progetto di: L. Barilla, G. Curati, I. Garavaglia, F. Tortelli</p>
-    </div>
+    <img src="testo.svg" class="svg-class"/>
+    <button id="my-button" onclick="location.href='experience.html'" type="button">PLAY</button>
+
 
   </body>
 
